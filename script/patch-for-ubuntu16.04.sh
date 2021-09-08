@@ -1,9 +1,6 @@
 #!/bin/bash
 
-BINDIR=`dirname $0`
 pushd $BINDIR
-
-SRCDIR=./spec_src
 
 if [ ! -d $SRCDIR ]
 then
@@ -12,7 +9,7 @@ then
 fi
 
 pushd $SRCDIR
-patch -p1 < ../for-ubuntu16.04.patch
+patch -p1 < ../../patch/for-ubuntu16.04.patch
 popd
 
 popd

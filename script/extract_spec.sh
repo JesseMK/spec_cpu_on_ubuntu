@@ -1,11 +1,9 @@
 #!/bin/bash
 
-BINDIR=`dirname $0`
 pushd $BINDIR
 
-SPECIMG=SPEC_CPU2006v1.1.iso
 TMPMNT=tmnt
-TARGET=spec_src
+TARGET=$SRCDIR
 
 if [ ! -f $SPECIMG ]
 then
@@ -14,12 +12,10 @@ then
 fi
 
 mkdir $TMPMNT
-sudo mount -o loop $SPECIMG ./$TMPMNT/
+mount -o loop $SPECIMG ./$TMPMNT/
 mkdir $TARGET
 cp -R ./$TMPMNT/* $TARGET/
-sudo umount ./$TMPMNT
+umount ./$TMPMNT
 rm -fr ./$TMPMNT/
-sudo chown -R $USER $TARGET/
-sudo chmod -R 755 $TARGET/
 
 popd
