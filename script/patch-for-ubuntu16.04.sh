@@ -9,7 +9,7 @@ then
 fi
 
 pushd $SRCDIR
-patch -p1 < ../../patch/for-ubuntu16.04.patch
+patch -p1 < /patch/for-ubuntu16.04.patch
 popd
 
 popd

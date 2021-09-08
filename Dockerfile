@@ -1,8 +1,10 @@
 FROM ubuntu:20.04
+LABEL version="1.0" \
+      description="Docker for SPEC 2006 on Focal"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV SPECIMG=/data/cpu2006-1.1.iso
+ENV SPECIMG=/data/SPEC_CPU2006v1.1.iso
 ENV SRCDIR=/data/spec_src
 ENV BINDIR=/data/spec_bin
 
@@ -19,9 +21,13 @@ RUN apt-get install -y -q \
     build-essential \
     libtool 
 
-RUN bash ./script/extract_spec.sh
-RUN bash ./script/patch-for-ubuntu18.04.sh
-RUN bash ./script/build.sh
-RUN bash ./script/collect_spec_binary.sh
+ADD ./script /script
+ADD ./patch /patch
 
-ENTRYPOINT ["bash"]
+CMD mkdir -p ${SRCDIR} && \
+    mkdir -p ${BINDIR} && \
+    /script/extract_spec.sh && \
+    bash /script/patch-for-ubuntu18.04.sh && \
+    bash /script/build.sh && \
+    bash /script/collect_spec_binary.sh && \
+    bash

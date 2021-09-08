@@ -2,7 +2,7 @@
 
 pushd $BINDIR
 
-pushd $SRC/tools/src
+pushd $SRCDIR/tools/src
 
 rm /bin/sh
 ln -s /bin/bash /bin/sh

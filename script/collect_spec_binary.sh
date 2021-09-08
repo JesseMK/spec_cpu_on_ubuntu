@@ -2,7 +2,7 @@
 
 pushd $BINDIR
 
-pushd $SRC/tools/src
+pushd $SRCDIR/tools/src
 
 for i in $(find -executable -type f) ; do
     if [ -n "$(file $i | grep ELF)" ]; then

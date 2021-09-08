@@ -1,0 +1,4 @@
+*.iso
+spec_src
+spec_bin
+data
